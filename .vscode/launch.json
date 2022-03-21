@@ -1,0 +1,16 @@
+{
+    "configurations": [
+    
+        
+        {
+            "type": "node-terminal",
+            "name": "Run Script: test",
+            "request": "launch",
+            "command": "npm run dev",
+            "cwd": "${workspaceFolder}",
+            "stopOnEntry": true,
+            "trace": true,
+            "internalConsoleOptions": "openOnSessionStart"
+        }
+    ]
+}

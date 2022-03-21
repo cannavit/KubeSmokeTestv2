@@ -13,27 +13,40 @@ const swaggerOptions = {
       title: "KubeSomkeTest API",
       description: "Api Documentation",
       // servers: ['http://localhost:3000'],
-      version: "1.0.0"
-    }
+      version: "1.0.0",
+    },
     // schemes: ["http"],
     // basePath: "/api/v1",
   },
   // ['.routes/*.js']
-  apis: ["./routes/*"]
+  apis: ["./routes/*"],
 };
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 
 // Create Swagger documentation declaration
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+// Add culster-coverage
 app.use("/cluster-coverage", require("./routes/cluster-coverage"));
+// Add service-coverage
+app.use("/service-coverage", require("./routes/service-coverage"));
+// Add resource-up
+app.use("/resource-up", require("./routes/resource-up"));
+// Add config-coverage
+app.use("/config-coverage", require("./routes/config-coverage"));
 
-// app.use("/service-coverage", require("./routes/service-coverage"));
-// app.use("/ingress-coverage", require("./routes/ingress-coverage"));
 // app.use("/resource-up", require("./routes/resource-up"));
 // app.use("/endpoint-coverage", require("./routes/endpoint-coverage"));
 
-app.listen(5004, () => {
-  console.log("Server is running on port 5004");
+const port = 5009;
+app.listen(port, () => {
+  console.log("Server is running on port " + port);
 });
 
+// sudo kill -9 $(sudo lsof -t -i:5000)
+
+// sudo kill -9 $(sudo lsof -t -i:5005)
+// fuser -n tcp -k 5000
+// sh killport 5000 
+
+// netstat -ltnp | grep -w '5000'
