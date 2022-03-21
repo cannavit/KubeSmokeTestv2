@@ -1,0 +1,30 @@
+{
+  "name": "kubesmoketestv2",
+  "version": "1.0.0",
+  "description": "SmokeTest for experiments v2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cannavit/KubeSmokeTestv2.git"
+  },
+  "author": "cecilio.cannav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cannavit/KubeSmokeTestv2/issues"
+  },
+  "homepage": "https://github.com/cannavit/KubeSmokeTestv2#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "fs": "0.0.1-security",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7",
+    "shelljs": "^0.8.5",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.3.0",
+    "uuid": "^8.3.2"
+  }
+}
