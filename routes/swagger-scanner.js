@@ -8,7 +8,7 @@ var uuid = require("uuid");
 const execByService = require("../utils/execByService");
 const axios = require("axios");
 
-async function example_getBasicApi() {
+async function example_getBasicApi(namespace) {
   const urlSwagger = HOST + "/api-docs/swagger-ui-init.js";
 
   request = await axios.get(urlSwagger);
@@ -31,35 +31,42 @@ async function example_getBasicApi() {
 
   // Parse Json Data
   data = JSON.parse(data);
-  console.log(Object.keys(data))
+  console.log(Object.keys(data));
 
-  dataRequest = []
+  dataRequest = [];
 
-  for (var key in data){
+  for (var key in data) {
+    criterial = data[key].get.tags[0];
 
-    criterial = data[key].get.tags[0]
-    parameters = data[key].get.parameters
+    parameters = data[key].get.parameters;
+    pamarsObj = {};
 
-    body = {
-        "path": HOST + key,
-        "parameters": parameters,
-        "criterial": criterial
+    for (const params of parameters) {
+      if (params.name == "namespace") {
+        pamarsObj[params.name] = namespace;
+      } else {
+        pamarsObj[params.name] = params["x-example"];
+      }
     }
+    // http://localhost:5009/service-coverage/check-deployments?namespace=smoke-test&runTests=true
+    body = {
+      path: HOST + key,
+      parameters: pamarsObj,
+      criterial: criterial,
+    };
 
     if (criterial != "swagger-scanner") {
-      dataRequest.push(body)
+      dataRequest.push(body);
     }
-
   }
 
   // Create one for by data items
-  return dataRequest
+  return dataRequest;
 }
 
 // example_getBasicApi();
 
-HOST = "http://localhost:5009"
-
+HOST = "http://localhost:5009";
 
 /**
  * @swagger
@@ -85,16 +92,15 @@ HOST = "http://localhost:5009"
  */
 
 router.get("/apis-list", async function (request, response) {
-
-
   // Calculate the delta time for execute the test
 
-  data = await example_getBasicApi()
+  namespace = request.query.namespace;
+
+  data = await example_getBasicApi(namespace);
 
   return response.status(200).send({
     apis: data,
   });
-
 });
 
 module.exports = router;

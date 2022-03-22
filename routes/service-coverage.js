@@ -31,12 +31,6 @@ const execByService = require("../utils/execByService");
  */
 
 router.get("/check-pods-running", async function (request, response) {
-  let args = [
-    "",
-    "",
-    "--check-pods-running",
-    "--namespace=" + request.query.namespace,
-  ];
 
   // Calculate the delta time for execute the test
   let startTime = new Date();
@@ -102,18 +96,13 @@ router.get("/check-pods-running", async function (request, response) {
  */
 
 router.get("/check-deployments", async function (request, response) {
-  let args = [
-    "",
-    "",
-    "--check-pods-running",
-    "--namespace=" + request.query.namespace,
-  ];
+
   
   // Calculate the delta time for execute the test
   let startTime = new Date();
 
 
-  command = `kubectl get deployment -n ${request.query.namespace} | grep -v "1/"`;
+  command = `kubectl get deployment -n ${request.query.namespace} | grep "/" | grep -v "1/"`;
 
   let passTest = "failure";
 
@@ -177,12 +166,6 @@ module.exports = router;
   // Calculate the delta time for execute the test
   let startTime = new Date();
 
-  let args = [
-    "",
-    "",
-    "--check-pods-running",
-    "--namespace=" + request.query.namespace,
-  ];
 
   testCommand = `kubectl logs --since=3m service/$$serviceName --namespace=${request.query.namespace} | grep -i \"error\"`
 
