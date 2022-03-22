@@ -17,12 +17,14 @@
   },
   "homepage": "https://github.com/cannavit/KubeSmokeTestv2#readme",
   "dependencies": {
+    "axios": "^0.26.1",
     "express": "^4.17.3",
     "fs": "0.0.1-security",
     "nodemon": "^2.0.15",
     "path": "^0.12.7",
     "shelljs": "^0.8.5",
     "swagger-jsdoc": "^6.1.0",
+    "swagger-smktest": "^0.2.5",
     "swagger-ui-express": "^4.3.0",
     "uuid": "^8.3.2"
   }

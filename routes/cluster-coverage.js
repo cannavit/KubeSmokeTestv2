@@ -13,6 +13,8 @@ var uuid = require('uuid');
  *      tags:
  *      - "cluster-coverage"
  *      summary: "Apply the smoke-test using all test with the criteria cluster-coverage"
+ *      produces:
+ *      - application/json
  *      parameters:
  *      - in: query
  *        name: "namespace"
@@ -88,6 +90,8 @@ router.get("/check-nodes", async function (request, response) {
  *      tags:
  *      - "cluster-coverage"
  *      summary: "Apply the smoke-test using all test with the criteria cluster-coverage"
+ *      produces:
+ *      - application/json
  *      parameters:
  *      - in: query
  *        name: "namespace"
@@ -155,6 +159,8 @@ router.get("/check-nodes", async function (request, response) {
  *      tags:
  *      - "cluster-coverage"
  *      summary: "Apply the smoke-test using all test with the criteria cluster-coverage"
+ *      produces:
+ *      - application/json
  *      parameters:
  *      - in: query
  *        name: "namespace"
@@ -223,6 +229,8 @@ router.get("/check-nodes", async function (request, response) {
  *      tags:
  *      - "cluster-coverage"
  *      summary: "Apply the smoke-test using all test with the criteria cluster-coverage"
+ *      produces:
+ *       - application/json
  *      parameters:
  *      - in: query
  *        name: "namespace"

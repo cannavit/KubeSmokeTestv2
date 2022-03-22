@@ -15,12 +15,19 @@ const swaggerOptions = {
       // servers: ['http://localhost:3000'],
       version: "1.0.0",
     },
-    // schemes: ["http"],
-    // basePath: "/api/v1",
+    host: "localhost:5009",
+    basePath: "/",
+    swagger: "2.0",
+    paths: { },
+    definitions: { },
+    responses: { },
+    parameters: { },
+    securityDefinitions: { }
   },
   // ['.routes/*.js']
   apis: ["./routes/*"],
 };
+
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 
@@ -34,6 +41,8 @@ app.use("/service-coverage", require("./routes/service-coverage"));
 app.use("/resource-up", require("./routes/resource-up"));
 // Add config-coverage
 app.use("/config-coverage", require("./routes/config-coverage"));
+// Add swagger-scanner
+app.use("/swagger-scanner", require("./routes/swagger-scanner"));
 
 // app.use("/resource-up", require("./routes/resource-up"));
 // app.use("/endpoint-coverage", require("./routes/endpoint-coverage"));
